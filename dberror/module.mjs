@@ -32,27 +32,16 @@ process.on('SIGINT', function () {/////this function will run jst before app is 
 
 // mongoose.connect(dbURI)
 
-
-// export const User = mongoose.model('User', {
-//     name: String,
-//     email: String,
-//     address: String
-// })
-
-
-// export const comments = new Schema({
-//     comment: String
-// })
-// var Schema = mongoose.Schema,
-//     ObjectId = Schema.ObjectId;
-
 export const BlogPost = mongoose.model('BlogPost', {
     title: String,
-    content: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 })
 
 export const comments = mongoose.model('Comment', {
     comment: String,
-    // blogPost: [{ type: Schema.Types.ObjectId, ref: 'BlogPost' }]
+    childcomments: [{ type: Schema.Types.ObjectId, ref: 'Chilcomment' }]
+})
+
+export const childcomment = mongoose.model('Chilcomment', {
+    childcomment: String
 })
